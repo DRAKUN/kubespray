@@ -94,3 +94,6 @@ target/
 # virtualenv
 venv/
 ENV/
+
+# external addons
+roles/kubernetes-apps/external_provisioner/gluster_provisioner
