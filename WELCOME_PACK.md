@@ -31,3 +31,15 @@ ansible-playbook cluster.yml --skip-tags=external-provisioner
 ansible-playbook extra_playbooks/external-addons.yml
 ansible-playbook cluster.yml --tags=external-provisioner
 ```
+
+## Integration
+
+The files you are allowed to modify :
+
+* requirements.yml
+* extra_playbooks/external-addons.yml
+* ansible.cfg
+* Makefile
+
+Please develop your addons as ansible roles and integrate them with the `extra_playbooks/external-addons.yml` playbook.
+Read carefully the `Makefile` to understand the deployment logic.

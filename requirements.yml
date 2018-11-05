@@ -1,3 +1,9 @@
 ---
 - src: https://github.com/WeScale/kubespray-role-gluster-provisioner.git
   name: kubernetes-apps/external_provisioner/gluster_provisioner
+
+- src: https://github.com/WeScale/kubespray-role-heketi.git
+  name: kubernetes-apps/external_provisioner/heketi
+
+- src: https://github.com/WeScale/kubespray-role-monitoring.git
+  name: kubernetes-apps/external_provisioner/monitoring
