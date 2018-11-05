@@ -1,0 +1,8 @@
+---
+- hosts: kube-master
+  any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
+  roles:
+    - role: kubespray-defaults
+    - role: kubernetes-apps/external_provisioner/gluster_provisioner
+      tags:
+        - external-provisioner

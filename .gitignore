@@ -97,3 +97,5 @@ ENV/
 
 # external addons
 roles/kubernetes-apps/external_provisioner/gluster_provisioner
+inventory/*
+ssh.cfg
