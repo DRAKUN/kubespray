@@ -1,6 +1,6 @@
-# Welcome Pack
+# Welcome Pack - Ops Edition
 
-## Grooming to prepare your workspace
+## Workspace grooming
 
 ### Create the virtualenv to install all Python requirements
 
@@ -13,23 +13,21 @@ pip install -r requirements.txt
 ### Install Ansible addons roles 
 
 ```
-ansible-galaxy install -fr requirements.yml
+make refresh-addons
 ```
 
 ### Prepare your inventory
 
 * Duplicate the `inventory/sample/` directory and rename with into your own workspace name.
 * Adjust vars in the `group_vars/**/*.yml` files
-* Fil you `hosts.ini` file with your hosts definitions.
+* Fill your `hosts.ini` file with your hosts definitions.
 * Adjust `ansible.cfg` to point to your preferred inventory file.
-* Launch a `ansible -m ping all` just to check you have full connectivity to your target hosts.
+* Launch a `make ping` just to check you have full connectivity to your target hosts.
 
 ## Install your cluster
 
 ```
-ansible-playbook cluster.yml --skip-tags=external-provisioner
-ansible-playbook extra_playbooks/external-addons.yml
-ansible-playbook cluster.yml --tags=external-provisioner
+make cluster
 ```
 
 ## Integration
@@ -37,7 +35,8 @@ ansible-playbook cluster.yml --tags=external-provisioner
 The files you are allowed to modify :
 
 * requirements.yml
-* extra_playbooks/external-addons.yml
+* requirements.txt
+* integration/*
 * ansible.cfg
 * Makefile
 

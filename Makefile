@@ -5,10 +5,10 @@ refresh-addons:
 	ansible-galaxy install -fr requirements.yml
 
 cluster:
-	ansible-playbook extra_playbooks/ext-bootstrap.yml
+	ansible-playbook integration/ext-bootstrap.yml
 	ansible-playbook cluster.yml
-	ansible-playbook extra_playbooks/ext-apps.yml
-	ansible-playbook cluster.yml --tags=
+	ansible-playbook integration/ext-apps.yml
+	ansible-playbook cluster.yml
 
 ping:
 	ansible -m ping all
