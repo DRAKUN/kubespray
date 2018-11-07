@@ -1,0 +1,29 @@
+---
+- hosts: kube-master
+  any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
+
+  roles:
+
+    - role: kubespray-defaults
+      tags:
+        - always
+
+    - role: kubernetes-apps/external_provisioner/gluster_provisioner
+      tags:
+        - apps
+        - gluster
+
+    - role: kubernetes-apps/external_provisioner/monitoring
+      tags:
+        - apps
+        - monitoring
+
+- hosts: k8s-cluster
+  any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
+
+  roles:
+    - role: kubernetes-apps/external_provisioner/heketi
+      tags:
+        - apps
+        - heketi
+

@@ -7,3 +7,6 @@
 
 - src: https://github.com/WeScale/kubespray-role-monitoring.git
   name: kubernetes-apps/external_provisioner/monitoring
+
+- src: https://github.com/aurelienmaury/ansible-role-seed.git
+  name: seed

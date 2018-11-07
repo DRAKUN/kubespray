@@ -1,0 +1,38 @@
+---
+- name: Init - Setup every host in the cluster with basic requirements
+  hosts: all
+  tags:
+    - init
+  roles:
+    - seed
+
+- name: Init - Add kernel modules for GlusterFS
+  hosts: k8s-cluster
+  vars:
+    need_mods:
+      - dm_snapshot
+      - dm_thin_pool
+      - dm_mirror
+
+  tasks:
+    - copy:
+        dest: /etc/modules-load.d/gluster
+        content: |-
+          {% for mod in need_mods %}
+          {{ mod }}
+          {% endfor %}
+
+    - modprobe:
+        name: "{{ item }}"
+        state: present
+      loop: "{{ need_mods }}"
+
+    - yum:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - glusterfs-fuse
+        - lvm2
+
+    - reboot:
+
