@@ -24,7 +24,7 @@ make refresh-addons
 * Adjust `ansible.cfg` to point to your preferred inventory file.
 * Launch a `make ping` just to check you have full connectivity to your target hosts.
 
-## Install your cluster
+## Install the whole cluster
 
 ```
 make cluster
@@ -34,7 +34,10 @@ make cluster
 
 The files you are allowed to modify :
 
-* requirements.yml
+### requirements.yml
+
+Here goes the addon roles to be installed by `ansible-galaxy`
+
 * requirements.txt
 * integration/*
 * ansible.cfg

@@ -1,27 +1,49 @@
 ---
-- hosts: kube-master
+- name: Install GlusterFS volume provisioner
+  hosts: kube-master
   any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
-
+  tags:
+    - apps
+    - gluster
   roles:
-
     - role: kubespray-defaults
       tags:
         - always
-
     - role: kubernetes-apps/external_provisioner/gluster_provisioner
       tags:
         - apps
         - gluster
+
+
+- name: Install Prometheus and Grafana for metric supervision
+  hosts: kube-master
+  any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
+  tags:
+    - apps
+    - monitoring
+  roles:
+    - role: kubespray-defaults
+      tags:
+        - always
 
     - role: kubernetes-apps/external_provisioner/monitoring
       tags:
         - apps
         - monitoring
 
-- hosts: k8s-cluster
+
+- name: Install Heketi for automatic PVC handling with GlusterFS
+  hosts: k8s-cluster
   any_errors_fatal: "{{ any_errors_fatal | default(true) }}"
+  tags:
+    - apps
+    - heketi
 
   roles:
+    - role: kubespray-defaults
+      tags:
+        - always
+
     - role: kubernetes-apps/external_provisioner/heketi
       tags:
         - apps
